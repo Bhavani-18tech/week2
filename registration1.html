@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 40px;
+    }
+    .container {
+      max-width: 400px;
+      background: #fff;
+      margin: auto;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      color: #555;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Register</h2>
+    <form action="/submit_registration" method="POST">
+      <label for="first">First Name</label>
+      <input type="text" id="first" name="first" required>
+
+      <label for="last">Last Name</label>
+      <input type="text" id="last" name="last" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password (min 8 characters)</label>
+      <input type="password" id="password" name="password" required
+             pattern=".{8,}" title="Must be at least 8 characters">
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" name="confirm" required
+             pattern=".{8,}" title="Must match the password field">
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select one…</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      const pw = form.password.value;
+      const cpw = form.confirm.value;
+      if (pw !== cpw) {
+        alert('Passwords do not match!');
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
